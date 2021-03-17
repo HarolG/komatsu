@@ -1,0 +1,14 @@
+.contenedor_editar {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(169, 169, 169, 0.281);
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    display: none;
+}
+
+.contenedor_editar .contenedor_form_editar .container {
+    margin-top: 100px;
+    margin-right: 1px;
+}
