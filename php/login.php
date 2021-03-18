@@ -10,8 +10,12 @@ if(!empty($_POST['documento']) && !empty($_POST['clave'])) {
     $prueba = mysqli_fetch_assoc($return);
 
     if(!empty($prueba)){
-        $_SESSION['datos'] = $prueba;
-        echo "False";
+        if($prueba['id_tip_usu'] == 1) {
+            $_SESSION['datos'] = $prueba;
+            echo "Admin";
+        } else  if($prueba['id_tip_usu'] == 2){
+            echo "Trabajador";
+        }
     } else {
         $_SESSION['datos_usuario'] = $prueba;
         echo "Usuario o contraseña incorrecta";
