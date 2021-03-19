@@ -36,6 +36,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="mantenimiento.php">Mantenimiento</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="trabajador.php">Trabajador</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <p class="text-white align-self-center mr-sm-4">Administrador</p>
@@ -47,7 +50,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="card card-body">
-                    <form id="form_insert" action="">
+                    <form id="form_trab" action="">
                         <div class="form-group">
                             <input type="text" id="id_serie" placeholder="No. Serie" class="form-control">
                         </div>
