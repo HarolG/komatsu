@@ -35,6 +35,9 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="trabajador.php">Trabajador</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <p class="text-white align-self-center mr-sm-4">Administrador</p>
