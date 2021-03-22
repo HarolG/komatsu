@@ -36,12 +36,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="mantenimiento.php">Mantenimiento</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="trabajador.php">Trabajador</a>
-                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <p class="text-white align-self-center mr-sm-4">Administrador</p>
+                <p class="text-white align-self-center mr-sm-4">Administrador | Harol Guzman</p>
                 <a class="btn btn-secondary my-2 my-sm-0" href="../php/cerrar_sesion.php">Cerrar Sesion</a>
             </ul>
         </div>
@@ -50,7 +47,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="card card-body">
-                    <form id="form_trab" action="">
+                    <form id="form_insert" action="">
                         <div class="form-group">
                             <input type="text" id="id_serie" placeholder="No. Serie" class="form-control">
                         </div>
