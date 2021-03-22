@@ -37,28 +37,35 @@ $(document).ready(function () {
         if (confirm('¿Estás seguro de generar un mantenimiento?')) {
             const element = $(this)[0].activeElement.parentElement.parentElement;
             const id = $(element).attr('mantenimientoId');
+
             $("#contenedor_editar").css("display", "block");
 
-            $('#form_mantenimiento').submit(function (e) { 
-                e.preventDefault();
-                const postData = {
-                    select_modelo: $('#select_modelo').val(),
-                    select_tipo: $('#select_tipo').val(),
-                    observacion: $('#observacion').val(),
-                    id_mante: id
-                }
+            $.get("../php/consultar_mantenimiento.php", {id},
+                function (response) {
+                    let id_maquina = response;
 
-                $.post("../php/generar_mante.php", postData,
-                    function (response) {
-                        if(response == "Se ha generado correctamente el mantenimiento") {
-                            lista_mantenimiento()
-                            $('#form_mantenimiento').trigger('reset');
-                            $("#contenedor_editar").css("display", "none");
+                    $('#form_mantenimiento').submit(function (e) { 
+                        e.preventDefault();
+                        const postData = {
+                            select_modelo: id_maquina,
+                            select_tipo: $('#select_tipo').val(),
+                            observacion: $('#observacion').val(),
+                            id_mante: id
                         }
-                        alert(response)
-                    }
-                );
-            });
+        
+                        $.post("../php/generar_mante.php", postData,
+                            function (response) {
+                                if(response == "Se ha generado correctamente el mantenimiento") {
+                                    lista_mantenimiento()
+                                    $('#form_mantenimiento').trigger('reset');
+                                    $("#contenedor_editar").css("display", "none");
+                                }
+                                alert(response)
+                            }
+                        );
+                    });
+                }
+            );
         }
     });
 

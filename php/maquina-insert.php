@@ -10,7 +10,7 @@
         $id_serie = $_POST['id_serie'];
 
         if($tipo != "Nulo") {
-            $sql = "INSERT INTO maquinas (id_maquina, modelo_maquina, id_tipo, potencia_neta, capacidad, ultimo_mantenimiento, proximo_mantenimiento) VALUES ('$id_serie', '$modelo', '$tipo', '$potencia', '$capacidad', NULL, NULL)";
+            $sql = "INSERT INTO maquinas (id_maquina, modelo_maquina, id_tipo, potencia_neta, capacidad) VALUES ('$id_serie', '$modelo', '$tipo', '$potencia', '$capacidad')";
             $result = mysqli_query($conn, $sql);
 
             $sql2 = "INSERT INTO mantenimiento (id_mantenimiento, id_tipo_mantenimiento, id_maquina, ultimo_mantenimiento, fecha_max_mantenimiento, obversacion) VALUES (NULL, NULL, '$id_serie', NULL, NULL, NULL)";
