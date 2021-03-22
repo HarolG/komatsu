@@ -35,6 +35,9 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="trabajador.php">Trabajador</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <p class="text-white align-self-center mr-sm-4">Administrador</p>
@@ -73,21 +76,6 @@
                         <form method="POST" id="form_mantenimiento">
                             <div class="form-group">
                                 <p id="btn_close_update" class="btn btn-danger">Cerrar</p>
-                            </div>
-                            <div class="form-group">
-                                <select class="form-control" id="select_modelo">
-                                    <option value="Nulo" selected>Elija el modelo</option>
-                                    <?php
-                                        $sql = "SELECT maquinas.id_maquina, maquinas.modelo_maquina, tipo.nom_tipo FROM maquinas, tipo WHERE maquinas.id_tipo = tipo.id_tipo";
-                                        $query = mysqli_query($conn, $sql);
-
-                                        while($row = mysqli_fetch_array($query)) {
-                                    ?>
-                                    <option value="<?php echo $row['id_maquina'] ?>"><?php echo $row['modelo_maquina'];?> - <?php echo $row['nom_tipo'] ?></option>
-                                    <?php
-                                        }
-                                    ?>
-                                </select>
                             </div>
                             <div class="form-group">
                                 <select class="form-control" id="select_tipo">
