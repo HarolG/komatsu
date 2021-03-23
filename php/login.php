@@ -13,13 +13,18 @@ if(!empty($_POST['documento']) && !empty($_POST['clave'])) {
         if($prueba['id_tip_usu'] == 1) {
             $_SESSION['datos'] = $prueba;
             echo "Admin";
-        } else  if($prueba['id_tip_usu'] == 2){
+        } 
+    } else {
+        $sql2 = "SELECT * FROM trabajadores WHERE documento = '$documento' AND clave = '$clave'";
+        $query = mysqli_query($conn, $sql2);
+        $prueba = mysqli_fetch_assoc($query);
+
+        if(!empty($prueba)){
             $_SESSION['datos'] = $prueba;
             echo "Trabajador";
+        } else {
+            echo "Los datos ingresados son incorrectos";
         }
-    } else {
-        $_SESSION['datos_usuario'] = $prueba;
-        echo "Usuario o contraseña incorrecta";
     }
 
 } else {

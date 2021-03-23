@@ -14,7 +14,7 @@
         // $turn = 1;
 
         if($tipo != "Nulo") {
-            $sql = "INSERT INTO trabajadores (documento, nombre, apellido, telefono, id_tip_usu, id_tip_doc, id_maquina) VALUES ('$doc', '$nom', '$apellido', '$tel', '$tipuser', '$tipo', '$maquina')";
+            $sql = "INSERT INTO trabajadores (documento, nombre, apellido, telefono, id_tip_usu, id_tip_doc, clave, id_maquina) VALUES ('$doc', '$nom', '$apellido', '$tel', '$tipuser', '$tipo', '$doc', '$maquina')";
             $result = mysqli_query($conn, $sql);
             
 
