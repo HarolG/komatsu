@@ -18,7 +18,7 @@
             $result = mysqli_query($conn, $sql);
             
 
-            $sql2 = "INSERT INTO `turnos` (`id_turno`, `documento`, `id_maquina`, `hora_inicio`, `hora_fin`, `estado`) VALUES (NULL, '$doc', '$maquina', NULL, NULL, NULL, 'No trabajando')";
+            $sql2 = "INSERT INTO `turnos` (`id_turno`, `documento`, `id_maquina`, `hora_inicio`, `hora_fin`, `hora_total`, `estado`) VALUES (NULL, '$doc', '$maquina', NULL, NULL, NULL, 'No trabajando')";
             $result2 = mysqli_query($conn, $sql2);
             
             if($result) {
