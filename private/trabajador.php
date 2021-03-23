@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | Komatsu</title>
     <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/trabajador.css">
 </head>
 
 <body>
@@ -28,71 +28,72 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="admin.php">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="mantenimiento.php">Mantenimiento</a>
-                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="trabajador.php">Trabajador
+                    <a class="nav-link" href="trabajador.php">Inicio
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <p class="text-white align-self-center mr-sm-4">Administrador</p>
+                <p class="text-white align-self-center mr-sm-4">Trabajador</p>
                 <a class="btn btn-secondary my-2 my-sm-0" href="../php/cerrar_sesion.php">Cerrar Sesion</a>
             </ul>
         </div>
     </nav>
     <div class="container pt-4">
         <div class="row">
-            <div class="col-md-3">
-                <div class="card card-body">
-                    <form id="form_insert" action="">
-                        <select class="form-control" id="maquina_disp">
-                            <option value="Nulo" selected>Maquina</option>
-                            <?php
-                                    $sql = "SELECT * FROM maquinas";
-                                    $query = mysqli_query($conn, $sql);
-                                    
+            <div class="col-md-6">
+                <div class="card card-body form_turno" id="form_turno">
+                    <?php
+                        $sql = "SELECT * FROM turnos WHERE documento = $documento";
+                        $query = mysqli_query($conn, $sql);
+                        $result = mysqli_fetch_assoc($query);
 
-                                    while ($row = mysqli_fetch_array($query)) {
-                                ?>
-                                    <option value="<?php echo $row['id_maquina'];?>"><?php echo $row['modelo_maquina'];?></option>       
-                                <?php
-                                    }
-                                ?>
-                        </select>
+                        if($result['estado'] == "No trabajando") {
+                    
+                    ?>
+                    <form id="form_insert" action="../php/generar_turno.php">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">Iniciar Turno</button>
+                            <button type="submit" class="btn btn-primary btn-block" id="btn_turno">Iniciar Turno</button>
                         </div>
                     </form>
+                    <?php
+                        } else {
+                    
+                    ?>
+                    <form id="form_insert_fin" action="../php/finalizar_turno.php">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block" id="btn_turno">Terminar Turno</button>
+                        </div>
+                    </form>
+                    <?php
+                        }
+                    ?>
+                    
                 </div>
-            </div>    
-            <div class="col-md-9">
-                <table class="table table-striped table-borderer bg-white table-sm">
-                    <thead>
-                        <tr>
-                            <td>Documeto</td>
-                            <td>ID de Turno</td>
-                            <td>Hora Inicio</td>
-                            <td>Hora Fin</td>
-                            <td>Hora Total</td>
-                            <td>Acciones</td>
-                        </tr>
-                    </thead>
-                    <tbody id="trabajador">
-
-                    </tbody>
-                </table>    
+            </div>
+            <div class="col-md-6">
+                <div class="alert alert-dismissible alert-success alerta_turno_exito" id="alerta_turno_exito" role="alert">
+                    <h4 class="alert-heading">Well done!</h4>
+                    <p>Aww yeah, you successfully read this important alert message. This example text is going to run a
+                        bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+                    <hr>
+                    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.
+                    </p>
+                    <button type="button" class="close" data-bs-dismiss="alert">&times;</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
+        integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
+        integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous">
+    </script>
     <script src="../js/trabajador.js"></script>
 </body>
 
