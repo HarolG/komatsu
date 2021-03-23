@@ -12,7 +12,7 @@
         $tipuser = 2;
 
         if($tipo != "Nulo") {
-            $sql = "INSERT INTO trabajadores (documento, nombre, apellido, telefono, id_tip_usu, id_tip_doc, id_maquina) VALUES ('$doc', '$nom', '$apellido', '$tel', '$tipuser', '$tipo', '$maquina')";
+            $sql = "INSERT INTO trabajadores (documento, nombre, apellido, telefono, id_tip_usu, id_tip_doc, clave, id_maquina) VALUES ('$doc', '$nom', '$apellido', '$tel', '$tipuser', '$tipo', '$doc', '$maquina')";
             $result = mysqli_query($conn, $sql);
 
             $sql2 = "INSERT INTO turnos (documento, id_maquina, hora_inicio, hora_fin, estado) VALUES ('$doc', '$maquina', NULL, NULL, 'No trabajando')";
