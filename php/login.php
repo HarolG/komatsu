@@ -14,6 +14,7 @@ if(!empty($_POST['documento']) && !empty($_POST['clave'])) {
             $_SESSION['datos'] = $prueba;
             echo "Admin";
         } else  if($prueba['id_tip_usu'] == 2){
+            $_SESSION['datos'] = $prueba;
             echo "Trabajador";
         }
     } else {

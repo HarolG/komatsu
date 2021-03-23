@@ -36,7 +36,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="trabajador.php">Trabajador</a>
+                    <a class="nav-link" href="crear_trabajador.php">Crear Trabajador
+                    </a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">

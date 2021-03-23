@@ -1,0 +1,11 @@
+.form_turno_fin {
+    display: none;
+}
+
+.alerta_turno_exito {
+    display: none;
+}
+
+.alerta_turno_error {
+    display: none;
+}

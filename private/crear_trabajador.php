@@ -28,16 +28,15 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="admin.php">Inicio
-                        <span class="sr-only">(current)</span>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.php">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="mantenimiento.php">Mantenimiento</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="crear_trabajador.php">Crear Trabajador
+                        <span class="sr-only">(current)</span>
                     </a>
                 </li>
             </ul>
@@ -47,36 +46,61 @@
             </ul>
         </div>
     </nav>
+    <!-- formulario -->
     <div class="container pt-4">
         <div class="row">
             <div class="col-md-3">
                 <div class="card card-body">
-                    <form id="form_insert" action="">
+                    <form id="form_tra" action="">
                         <div class="form-group">
-                            <input type="text" id="id_serie" placeholder="No. Serie" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="modelo" placeholder="Modelo" class="form-control">
-                        </div>
-                        <select class="form-control" id="tipo_maquina">
-                            <option value="Nulo" selected>Tipo de maquina</option>
-                            <?php
-                                    $sql = "SELECT * FROM tipo";
+                            <select class="form-control" id="tipo_documento">
+                                <option value="Nulo" selected>Tipo de documento</option>
+                                <?php
+                                    $sql = "SELECT * FROM tip_doc";
                                     $query = mysqli_query($conn, $sql);
                                     
 
                                     while ($row = mysqli_fetch_array($query)) {
                                 ?>
-                                    <option value="<?php echo $row['id_tipo'];?>"><?php echo $row['nom_tipo'];?></option>       
+                                    <option value="<?php echo $row['id_tip_doc'];?>"><?php echo $row['nom_tip_doc'];?></option>       
                                 <?php
                                     }
                                 ?>
-                        </select>
-                        <div class="form-group">
-                            <input type="text" id="potencia" placeholder="Potencia neta al volante" class="form-control">
+                            </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="capacidad" placeholder="Capacidad" class="form-control">
+                            <input type="text" id="documento" placeholder="Documento Trabajador" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="nombre" placeholder="Nombre Trabajador" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="apellido" placeholder="Apellido Trabajador" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="correo" placeholder="Correo Trabajador" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="telefono" placeholder="Telefono Trabajador" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="direccion" placeholder="Direccion Trabajador" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" id="maquina_disponible">
+                                <option value="Nulo" selected>Maquinas Disponibles</option>
+                                <?php
+                                    $sql = "SELECT * FROM maquinas";
+                                    $query = mysqli_query($conn, $sql);
+                                    
+
+                                    while ($row = mysqli_fetch_array($query)) {
+                                ?>
+                                    <option value="<?php echo $row['id_maquina'];?>"><?php echo $row['modelo_maquina'];?></option>       
+                                <?php
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-block">Salvar</button>
@@ -88,15 +112,16 @@
                 <table class="table table-striped table-borderer bg-white table-sm">
                     <thead>
                         <tr>
-                            <td>ID</td>
-                            <td>Modelo</td>
-                            <td>Tipo</td>
-                            <td>Potencia neta al volante</td>
-                            <td>Capacidad</td>
+                            <td>Documento</td>
+                            <td>Nombre</td>
+                            <td>Apellido</td>
+                            <td>Correo</td>
+                            <td>Telefono</td>
+                            <td>Direcciom</td>
                             <td>Acciones</td>
                         </tr>
                     </thead>
-                    <tbody id="maquinas">
+                    <tbody id="trab">
                         
                     </tbody>
                 </table>
@@ -113,27 +138,13 @@
                                 <p id="btn_close_update" class="btn btn-danger">Cerrar</p>
                             </div>
                             <div class="form-group">
-                                <input type="text" id="modelo_update" placeholder="Modelo" class="form-control">
-                            </div>
-                            <select class="form-control" id="tipo_maquina_update">
-                                <option value="Nulo" selected>Tipo de maquina</option>
-                                <?php
-                                    $sql = "SELECT * FROM tipo";
-                                    $query = mysqli_query($conn, $sql);
-                                    
-
-                                    while ($row = mysqli_fetch_array($query)) {
-                                ?>
-                                    <option value="<?php echo $row['id_tipo'];?>"><?php echo $row['nom_tipo'];?></option>       
-                                <?php
-                                    }
-                                ?>
-                            </select>
-                            <div class="form-group">
-                                <input type="text" id="potencia_update" placeholder="Potencia neta al volante" class="form-control">
+                                <input type="text" id="correo_update" placeholder="Correo" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="text" id="capacidad_update" placeholder="Capacidad" class="form-control">
+                                <input type="text" id="telefono_update" placeholder="Telefono" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="direccion_update" placeholder="Direccion" class="form-control">
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block">Editar</button>
@@ -146,7 +157,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="../js/admin.js"></script>
+    <script src="../js/trabajador.js"></script>
 </body>
 
 </html>
