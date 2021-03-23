@@ -51,9 +51,9 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="card card-body">
-                    <form id="form_tra" action="">
+                    <form action="../php/crear_trabajador.php" method="POST">
                         <div class="form-group">
-                            <select class="form-control" id="tipo_documento">
+                            <select class="form-control" name="tipo_documento">
                                 <option value="Nulo" selected>Tipo de documento</option>
                                 <?php
                                     $sql = "SELECT * FROM tip_doc";
@@ -69,25 +69,19 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="documento" placeholder="Documento Trabajador" class="form-control">
+                            <input type="text" name="documento" placeholder="Documento Trabajador" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" id="nombre" placeholder="Nombre Trabajador" class="form-control">
+                            <input type="text" name="nombre" placeholder="Nombre Trabajador" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" id="apellido" placeholder="Apellido Trabajador" class="form-control">
+                            <input type="text" name="apellido" placeholder="Apellido Trabajador" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" id="correo" placeholder="Correo Trabajador" class="form-control">
+                            <input type="text" name="telefono" placeholder="Telefono Trabajador" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" id="telefono" placeholder="Telefono Trabajador" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="direccion" placeholder="Direccion Trabajador" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control" id="maquina_disponible">
+                            <select class="form-control" name="maquina_disponible">
                                 <option value="Nulo" selected>Maquinas Disponibles</option>
                                 <?php
                                     $sql = "SELECT * FROM maquinas";
@@ -103,7 +97,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+                            <input type="submit" name="guardar" class="btn btn-primary btn-block" value="enviar">
                         </div>
                     </form>
                 </div>
@@ -115,49 +109,37 @@
                             <td>Documento</td>
                             <td>Nombre</td>
                             <td>Apellido</td>
-                            <td>Correo</td>
                             <td>Telefono</td>
-                            <td>Direcciom</td>
+                            <td>ID de la maquina</td>
+                            <td>Tipo de documento</td>
+                            <td>Tipo de usuario</td>
                             <td>Acciones</td>
                         </tr>
                     </thead>
-                    <tbody id="trab">
-                        
+                    <tbody>
+                            <?php
+                            $query = "SELECT * FROM trabajadores";
+                            $result_tasks = mysqli_query($conn, $query);    
+                  
+                            while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+                            <tr>
+                              <td><?php echo $row['documento'] ?></td>
+                              <td><?php echo $row['nombre'] ?></td>
+                              <td><?php echo $row['apellido'] ?></td>
+                              <td><?php echo $row['telefono']; ?></td>
+                              <td><?php echo $row['id_maquina']; ?></td>
+                              <td><?php echo $row['id_tip_doc']; ?></td>
+                              <td><?php echo $row['id_tip_usu']; ?></td>
+                            </tr>
+                            <?php } ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <div class="contenedor_editar" id="contenedor_editar">
-        <div class="contenedor_form_editar">
-            <div class="container">
-                <div class="col-md-8">
-                    <div class="card card-body">
-                        <form method="POST" id="form_update">
-                            <div class="form-group">
-                                <p id="btn_close_update" class="btn btn-danger">Cerrar</p>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="correo_update" placeholder="Correo" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="telefono_update" placeholder="Telefono" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="direccion_update" placeholder="Direccion" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block">Editar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="../js/trabajador.js"></script>
+    <!-- <script src="../js/trabajador.js"></script> -->
 </body>
 
 </html>
