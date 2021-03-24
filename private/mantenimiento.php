@@ -39,6 +39,10 @@
                     <a class="nav-link" href="crear_trabajador.php">Crear Trabajador
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="informe.php">Informe
+                    </a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <p class="text-white align-self-center mr-sm-4">Administrador</p>

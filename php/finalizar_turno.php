@@ -12,6 +12,7 @@
         $query2 = mysqli_query($conn, $sql2);
         $result = mysqli_fetch_assoc($query2);
 
+        $id_turno = $result['id_turno'];
         $hora_inicio = $result['hora_inicio'];
         $hora_fin = $result['hora_fin'];
         $hora_total = $result['hora_total'];
@@ -28,7 +29,17 @@
         $sql3 = "UPDATE turnos SET hora_total = '$acumulado' WHERE documento = $documento";
         $query3 = mysqli_query($conn, $sql3);
 
-        header("location: ../private/trabajador.php");
+        $sql4 = "SELECT * FROM tope WHERE id_turno = '$id_turno'";
+        $query4 = mysqli_query($conn, $sql4);
+        $result4 = mysqli_fetch_assoc($query4);
+
+        if(empty($result4)){
+            $sql5 = "INSERT INTO tope (id_tope, id_turno, tope_trabajador, tope_aceite, tope_ruedas, tope_aplazar_trabajador, tope_aplazar_maquina) VALUES (NULL, '$id_turno', '60', '240', '500', '5', '5')";
+            $query5 = mysqli_query($conn, $sql5);
+            header("location: ../private/trabajador.php");
+        } else {
+            header("location: ../private/trabajador.php");
+        }
 
     } else {
         header("location: ../private/trabajador.php");
