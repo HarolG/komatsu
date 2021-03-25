@@ -7,6 +7,9 @@
     $sql = "UPDATE turnos SET hora_fin = NOW(), estado = 'No trabajando' WHERE documento = $documento";
     $query = mysqli_query($conn, $sql);
 
+    $sql6 = "UPDATE registro_turnos SET hora_fin = NOW() WHERE documento = $documento";
+    $query6 = mysqli_query($conn, $sql6);
+
     if($query) {
         $sql2 = "SELECT * FROM turnos WHERE documento = $documento";
         $query2 = mysqli_query($conn, $sql2);
