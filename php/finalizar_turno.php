@@ -7,8 +7,17 @@
     $sql = "UPDATE turnos SET hora_fin = NOW(), estado = 'No trabajando' WHERE documento = $documento";
     $query = mysqli_query($conn, $sql);
 
-    $sql6 = "UPDATE registro_turnos SET hora_fin = NOW() WHERE documento = $documento";
-    $query6 = mysqli_query($conn, $sql6);
+    $sql1 = "SELECT * FROM turnos WHERE documento = $documento";
+    $query1 = mysqli_query($conn, $sql1);
+    $res = mysqli_fetch_assoc($query1);
+
+    if ($res) {
+        $inicio = $res['hora_inicio'];
+        $fin = $res['hora_fin'];
+
+        $sql22 = "INSERT INTO `registro_turnos` (`id`, `documento`, `hora_inicio`, `hora_fin`) VALUES (NULL, '$documento', '$inicio', '$fin')";
+        $query22 = mysqli_query($conn, $sql22);
+    }
 
     if($query) {
         $sql2 = "SELECT * FROM turnos WHERE documento = $documento";
