@@ -33,6 +33,9 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="informetrab.php">Informe</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <p class="text-white align-self-center mr-sm-4">Trabajador</p>
