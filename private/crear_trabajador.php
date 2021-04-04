@@ -110,19 +110,19 @@
                 <table class="table table-striped table-borderer bg-white table-sm">
                     <thead>
                         <tr>
-                            <td>Documento</td>
-                            <td>Nombre</td>
-                            <td>Apellido</td>
-                            <td>Telefono</td>
-                            <td>ID de la maquina</td>
-                            <td>Tipo de documento</td>
-                            <td>Tipo de usuario</td>
-                            <td>Acciones</td>
+                            <td class="bg-primary">Documento</td>
+                            <td class="bg-primary">Nombre</td>
+                            <td class="bg-primary">Apellido</td>
+                            <td class="bg-primary">Telefono</td>
+                            <td class="bg-primary">ID de la maquina</td>
+                            <td class="bg-primary">Tipo de documento</td>
+                            <td class="bg-primary">Tipo de usuario</td>
                         </tr>
                     </thead>
                     <tbody>
                             <?php
-                            $query = "SELECT * FROM trabajadores";
+                            $query = "SELECT * FROM trabajadores, tip_doc, tipo_usuario 
+                            WHERE trabajadores.id_tip_usu = tipo_usuario.id_tip_usu AND trabajadores.id_tip_doc = tip_doc.id_tip_doc";
                             $result_tasks = mysqli_query($conn, $query);    
                   
                             while($row = mysqli_fetch_assoc($result_tasks)) { ?>
@@ -132,8 +132,8 @@
                               <td><?php echo $row['apellido'] ?></td>
                               <td><?php echo $row['telefono']; ?></td>
                               <td><?php echo $row['id_maquina']; ?></td>
-                              <td><?php echo $row['id_tip_doc']; ?></td>
-                              <td><?php echo $row['id_tip_usu']; ?></td>
+                              <td><?php echo $row['nom_tip_doc']; ?></td>
+                              <td><?php echo $row['nom_tip_usu']; ?></td>
                             </tr>
                             <?php } ?>
                     </tbody>
